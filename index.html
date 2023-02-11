@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7529335719399218"
+     crossorigin="anonymous"></script>
+    <style>
+      h1 {
+        font-size: 36px;
+        text-align: center;
+        font-family: "Gungsuh", serif;
+      }
+      h5 {
+        font-size: 18px;
+        text-align: center;
+        font-family: "Gungsuh", serif;
+      }
+      #text-area {
+        width: 500px;
+        height: 300px;
+        padding: 10px;
+        font-family: "Gungsuh", serif;
+        font-size: 18px;
+      }
+      button {
+        padding: 10px 20px;
+        margin-right: 10px;
+        font-size: 18px;
+        font-family: "Gungsuh", serif;
+      }
+      body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+    </style>
+  </head>
+  <body>
+    <h1 id="title">진지한 메모장</h1>
+    <h5>나는 지금 진지하다. 이거 궁서체다</h5>
+    <textarea id="text-area"></textarea><br>
+    <button id="undo-button">실행 취소</button>
+    <button id="redo-button">다시 실행</button>
+    <button id="clear-button">초기화</button>
+    <button id="copy-button">클립보드에 복사</button>
+ 
+    
+    <script>
+      const textArea = document.getElementById("text-area");
+      const undoButton = document.getElementById("undo-button");
+      const redoButton = document.getElementById("redo-button");
+      const clearButton = document.getElementById("clear-button");
+      const copyButton = document.getElementById("copy-button");
+      const title = document.getElementById("title");
+
+      let undoStack = [];
+      let redoStack = [];
+
+
+      textArea.addEventListener("input", () => {
+        undoStack.push(textArea.value);
+        redoStack = [];
+          if (textArea.value.length > 1) {
+          setTimeout(() => {
+            title.style.color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+          }, 3000);
+        }
+      });
+
+      undoButton.addEventListener("click", () => {
+        if (undoStack.length > 1) {
+          redoStack.push(undoStack.pop());
+          textArea.value = undoStack[undoStack.length - 1];
+        }
+      });
+
+      redoButton.addEventListener("click", () => {
+        if (redoStack.length > 0) {
+          undoStack.push(redoStack.pop());
+          textArea.value = undoStack[undoStack.length - 1];
+        }
+      });
+
+      clearButton.addEventListener("click", () => {
+        undoStack.push("");
+        textArea.value = "";
+      });
+
+      copyButton.addEventListener("click", () => {
+        textArea.select();
+        document.execCommand("copy");
+      });
+    </script>
+  </body>
+</html>
