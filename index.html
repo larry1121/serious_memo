@@ -66,6 +66,7 @@ button {
   cursor: pointer;
   transition: background-color 0.2s ease;
   font-family: "궁서체";
+  display: inline-block; /* 버튼의 display 속성을 inline-block으로 설정 */
 }
 
 button:hover {
@@ -86,6 +87,7 @@ button:active {
 #clear-button,
 #copy-button {
   width: 120px;
+  display: inline-block; /* 버튼의 display 속성을 inline-block으로 설정 */
 }
 
 @media screen and (min-width: 768px) {
@@ -108,6 +110,9 @@ button:active {
     <button id="clear-button">초기화</button>
     <button id="copy-button">클립보드에 복사</button>
     <button id="download-txt">텍스트 파일로 내보내기</button>
+    <div id="count-with-spaces"></div>
+<div id="count-without-spaces"></div>
+
 <!-- <button id="download-pdf">PDF 파일로 내보내기</button> -->
 <ins class="kakao_ad_area" style="display:none;"
 data-ad-unit = "DAN-0pctnwpq22pnNI29"
@@ -183,6 +188,18 @@ document.getElementById("download-txt").addEventListener("click", downloadTxtFil
         textArea.select();
         document.execCommand("copy");
       });
+
+const countWithSpaces = document.getElementById("count-with-spaces");
+const countWithoutSpaces = document.getElementById("count-without-spaces");
+
+textArea.addEventListener("input", () => {
+  const text = textArea.value;
+  const lengthWithSpaces = text.length;
+  const lengthWithoutSpaces = text.replace(/ /g, '').length;
+  countWithSpaces.textContent = `글자 수(공백 포함): ${lengthWithSpaces}`;
+  countWithoutSpaces.textContent = `글자 수(공백 제외): ${lengthWithoutSpaces}`;
+});
+
     </script>
   </body>
 </html>
