@@ -14,6 +14,8 @@
     <meta name="twitter:description" content="진지한 메모장입니다. 텍스트를 입력하고 실행 취소, 다시 실행, 초기화, 복사 등의 기능을 이용할 수 있습니다.">
     <meta name="twitter:image" content="https://cdn-icons-png.flaticon.com/512/533/533864.png">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8868216521658752"
     crossorigin="anonymous"></script>
     <style>
@@ -96,6 +98,35 @@ button:active {
   button {
     padding: 12px 24px;
     font-size: 18px;
+  }
+}
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h5 {
+    font-size: 16px;
+  }
+
+  #text-area {
+    font-size: 16px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  #undo-button,
+  #redo-button,
+  #clear-button,
+  #copy-button {
+    width: 100px;
   }
 }
 
